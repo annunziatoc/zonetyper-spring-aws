@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--background);
+  color: var(--text-primary)
+}
+
+body {
+  line-height: inherit;
+}
+
+
+:root {
+
+  color-scheme: light dark;
+
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+  --font-display: 'Audiowide', ui-sans-serif, sans-serif;
+  --font-nav-items: 'Recursive', sans-serif;
+
+  --background: light-dark(#ece8e8, #232424);
+  --typing-surface: light-dark(#969daa94, #5a606d34);
+  --typing-surface-text: light-dark(#4e4d4b, #a8a8ac);
+
+  --timer-text: light-dark(oklch(33.265% 0.0038 264.586 / 0.688), rgba(168, 168, 172, 0.825));
+
+  --text-primary: light-dark(#1a1a1a, oklch(92% 0.001 286.375));
+  --text-secondary: light-dark(#6b7280, #95AFC7);
+  --caret-background: light-dark(oklch(64.272% 0.01186 95.276), oklch(43.758% 0.00967 99.117));
+  --text-success: light-dark(oklch(57.105% 0.23631 260.272), oklch(65.721% 0.16625 245.236));
+  --text-failure: light-dark(oklch(0.62 0.2681 19.38), oklch(0.63 0.2681 19.38));
+  --footer-guide: light-dark(#212121, #a5a5a7);
+  --typing-mask-outline: light-dark(#71708bc4, #71708bc4);
+  --typing-mask-error: light-dark(#f92e68ac, #f92e6872);
+
+  --font-results: light-dark(#090909, #a7b6b6);
+  --background-results: light-dark(#c2c4c894,#1f2123);
+  --text-stats: light-dark(rgb(211, 57, 81),rgb(224, 62, 86));
+
+  --radial-bg: light-dark(#e6e1e1, #1d1e1e);
+  --loading-lines-bg: light-dark(#090909, #9eacac);
+  --leaderboard-bg: light-dark(#dfdada, #262629);
+
+  --leaderboard-row-even: light-dark(#d5d1d1, #383839);
+  --leaderboard-row-alt: light-dark(#b5abab, #535051);
+  --leaderboard-exit-bg: light-dark(#aca9a9, #313234);
+  --leaderboard-exit-button: light-dark(#cac2c2, #8a8f94);
+  --leaderboard-exit-button-hover: light-dark(#f3ebeb, #b6bbc1);
+
+  --charts-x-axis: light-dark(#757474, #7c7f82);
+  --charts-y-axis: light-dark(#757474, #7c7f82);
+  --charts-line-stroke: light-dark(#090909, #b6bbc1);
+  --stats-grid-bg: light-dark(#d2d0d2, #1f2123);
+  --stats-grid-font: light-dark(rgb(71, 72, 73), #a4a6ab);
+  --stats-grid-shadow: light-dark(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+}

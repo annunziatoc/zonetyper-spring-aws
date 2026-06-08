@@ -1,0 +1,78 @@
+.container {
+    position: relative;
+    display: flex;
+    font-family: var(--font-nav-items);
+    color: var(--font-results);
+    border-radius: 10px;
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.4);
+    background-color: var(--background-results);
+    padding: 0.7rem;
+    margin-top: -4px;
+    width: 59rem;
+    height: 20rem;
+    margin: auto;
+}
+
+.card {
+    gap: 0.5rem;
+    display: flex;
+    width: 100%;
+}
+
+.statsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.statsGrid li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem;
+    border-radius: 6px;
+    list-style: none;
+    font-size: 1rem;
+    font-weight: 700;
+    gap: 3px;
+    background-color: var(--stats-grid-bg);
+    box-shadow: 0 2px 4px var(--stats-grid-shadow);
+    color: var(--stats-grid-font);
+}
+
+.statsGrid li:hover {
+    scale: 105%;
+}
+
+.statsGrid li span {
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--text-stats);
+}
+
+.graphGridOuter {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    font-weight: 500;
+    align-items: end;
+    color: var(--stats-grid-font);
+}
+
+.graphFlexInner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.graphFlexInner :focus {
+    outline: none;
+}
+
+.seconds {
+    padding-bottom: 26px;
+    padding-left: 8px;
+}

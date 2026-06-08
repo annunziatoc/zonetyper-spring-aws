@@ -1,0 +1,103 @@
+.mainSurface {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.typingMaskWrapper {
+    position: relative;
+    width: 50rem;
+    height: 23rem;
+}
+
+.typingMaskOutline {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    stroke: var(--typing-mask-outline);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 2px var(--typing-mask-outline));
+}
+
+.hasErrors {
+    stroke: var(--typing-mask-error);
+    stroke-width: 2.5;
+    filter: drop-shadow(0 0 2px rgba(244, 21, 21, 0.191));
+}
+
+.typingMask {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 23rem;
+    width: 50rem;
+    background-color: var(--typing-surface);
+    clip-path: path("M 0 30 C 0 24 6 18 14 18 H 304 C 315 18 326 14 334 7 C 340 3 348 0 356 0 H 444 C 452 0 460 3 466 7 C 474 14 485 18 496 18 H 786 C 794 18 800 24 800 30 V 344 C 800 350 794 356 786 356 H 682 C 678 356 675 359 670 365 C 667 367 664 368 657 368 H 143 C 140 368 136 367 130 365 C 125 359 122 356 118 356 H 14 C 6 356 0 350 0 344 Z");
+}
+
+
+.typingMask::after {
+    position: absolute;
+    inset: 87% 0 0 0.7%;
+    content: '';
+    border-radius: 10px;
+    background: repeating-linear-gradient(-45deg,
+            rgba(56, 56, 56, 0.26),
+            rgba(87, 87, 87, 0.417) 2px,
+            transparent 3px,
+            transparent 7px) left / 114px 30% no-repeat,
+        repeating-linear-gradient(45deg,
+            rgba(56, 56, 56, 0.26),
+            rgba(87, 87, 87, 0.417) 2px,
+            transparent 3px,
+            transparent 7px) right / 114px 30% no-repeat;
+}
+
+
+.typingMask::before {
+    content: '';
+    inset: 0;
+    position: absolute;
+    background-image: url('/assets/texture_mask.webp');
+    background-size: cover;
+    opacity: .1;
+    pointer-events: none;
+}
+
+.surface {
+    width: 100%;
+    margin: 2rem;
+    margin-top: 2.5rem;
+    color: var(--typing-surface-text);
+    font-family: var(--font-mono);
+    font-size: 1.30rem;
+    white-space: pre-wrap
+}
+
+.correct {
+    color: var(--text-success);
+}
+
+.incorrect {
+    background-color: var(--text-failure);
+}
+
+.caret {
+    position: absolute;
+    background-color: var(--caret-background);
+    z-index: -1;
+}
+
+.surface:focus {
+    outline: none;
+    user-select: none;
+}
+
+.warning {
+    font-family: var(--font-mono);
+    color: var(--text-failure);
+    padding-top: 2px;
+}

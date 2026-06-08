@@ -1,0 +1,39 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: zt_frontend
+    ports: 
+    - "5173:5173"
+    volumes: 
+    - ./frontend:/app
+    - /app/node_modules
+    depends_on: 
+    - backend
+
+  db:
+    image: postgres:16
+    container_name: zt_database
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_DB: pgdb
+      POSTGRES_PASSWORD: pgpw
+    ports:
+     - "5432:5432"
+    volumes: 
+     - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: zt_backend
+    ports: 
+      - "5000:5000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/pgdb
+      - SPRING_DATASOURCE_USERNAME=pguser
+      - SPRING_DATASOURCE_PASSWORD=pgpw
+      - SERVER_PORT=5000 
+    depends_on:
+      - db
+      
+volumes:
+  postgres_data:

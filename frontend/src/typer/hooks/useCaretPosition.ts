@@ -1,0 +1,38 @@
+import { useEffect, useState } from "react"
+
+export const useCaretPosition = (
+
+    /* 
+   computes caret position by taking the difference of the top and left 
+   of the viewport to the container div relatative to the caret div,
+    handling resize and changing of text events
+   */
+
+
+    caretRef: React.RefObject<HTMLSpanElement | null>,
+    currIdx: number,
+    charsLen: number,
+    containerRef: React.RefObject<HTMLDivElement | null>) => {
+
+    const [caretPos, setCaretPos] = useState({ top: 0, left: 0, height: 0, width: 0 })
+
+    const measure = () => {
+        const containerRect = containerRef.current?.getBoundingClientRect()
+        const caretRect = caretRef.current?.getBoundingClientRect()
+        if (!containerRect || !caretRect) return
+        setCaretPos({
+            top: caretRect.top - containerRect.top,
+            left: caretRect.left - containerRect.left,
+            height: caretRect.height,
+            width: caretRect.width > 10 ? caretRect.width : 13
+        })
+    }
+
+    useEffect(() => { measure() }, [currIdx, charsLen])
+    useEffect(() => {
+        window.addEventListener('resize', measure)
+        return () => window.removeEventListener('resize', measure)
+    }, [])
+
+    return caretPos;
+}
