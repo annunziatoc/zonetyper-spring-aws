@@ -37,5 +37,5 @@ jobs:
             --version-label ${{ github.sha }} \
             --source-bundle S3Bucket="elasticbeanstalk-us-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="deploy.zip"
           aws elasticbeanstalk update-environment \
-            --environment-name zonetyper-backend-env \
+            --environment-name Zonetyper-env \
             --version-label ${{ github.sha }}

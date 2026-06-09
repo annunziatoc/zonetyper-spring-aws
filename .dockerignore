@@ -5,3 +5,4 @@ backend/target
 .idea
 .git
 aws
+.elasticbeanstalk/
