@@ -4,3 +4,4 @@ backend/target
 .env
 .idea
 .git
+aws

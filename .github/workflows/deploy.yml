@@ -1,32 +1,41 @@
-name: Build and Deploy
+name: Deploy Backend
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Login to Azure Container Registry
-        uses: docker/login-action@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          registry: ztcontainerreg.azurecr.io
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: ./backend
-          push: true
-          tags: ztcontainerreg.azurecr.io/zonetyper:latest
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: zt-web-app
-          images: ztcontainerreg.azurecr.io/zonetyper:latest
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+      - name: Build and push to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/zonetyper:latest ./backend
+          docker push $ECR_REGISTRY/zonetyper:latest
+
+      - name: Deploy to Beanstalk
+        run: |
+          zip -j deploy.zip ./backend/Dockerrun.aws.json
+          aws s3 cp deploy.zip s3://elasticbeanstalk-us-east-1-${{ secrets.AWS_ACCOUNT_ID }}/deploy.zip
+          aws elasticbeanstalk create-application-version \
+            --application-name zonetyper \
+            --version-label ${{ github.sha }} \
+            --source-bundle S3Bucket="elasticbeanstalk-us-east-1-${{ secrets.AWS_ACCOUNT_ID }}",S3Key="deploy.zip"
+          aws elasticbeanstalk update-environment \
+            --environment-name zonetyper-backend-env \
+            --version-label ${{ github.sha }}
