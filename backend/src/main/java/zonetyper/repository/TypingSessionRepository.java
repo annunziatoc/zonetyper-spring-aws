@@ -12,5 +12,9 @@ public interface TypingSessionRepository extends JpaRepository<TypingSession, In
     List<TypingSession> getLeaderboard();
 
     @Query(value = "SELECT COALESCE(MAX(wpm), 0) FROM typing_sessions", nativeQuery = true)
-    double findTopSpeed();
+    double getTopSpeed();
+
+    @Query(value = "SELECT COALESCE(AVG(wpm), 0) FROM (SELECT wpm from typing_sessions ORDER BY completed_at DESC LIMIT 5) sub", nativeQuery = true)
+    double getLastFiveAvgWpm();
+
 }

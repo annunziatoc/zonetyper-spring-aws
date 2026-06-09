@@ -2,7 +2,8 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export type userStatsDto = {
     topSpeed: number;
-    recentStats: {
+    lastFiveAvg: number;
+    allStats: {
         id: number;
         wpm: number;
         accuracy: number;

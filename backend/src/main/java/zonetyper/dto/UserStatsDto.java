@@ -5,5 +5,6 @@ import zonetyper.model.TypingSession;
 
 public record UserStatsDto(
     double topSpeed,
-    List<TypingSession> recentStats
+    double lastFiveAvgWpm,
+    List<TypingSession> allStats
 ) {}

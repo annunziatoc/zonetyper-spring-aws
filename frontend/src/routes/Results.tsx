@@ -26,10 +26,10 @@ const Results = () => {
                         <small>wpm</small></span></li> : <li><Loading /></li>}
                     {stats ? <li>Last 5 Avg: <span>
                         {(() => {
-                            if (!stats.recentStats) return ''
+                            if (!stats.allStats) return ''
                             let sum = 0;
-                            for (const s of stats.recentStats) sum += s.wpm
-                            return Math.round(sum / stats.recentStats.length)
+                            for (const s of stats.allStats) sum += s.wpm
+                            return Math.round(sum / stats.allStats.length)
                         })()}
                         <small> wpm</small>
                     </span></li> : <li><Loading /></li>}

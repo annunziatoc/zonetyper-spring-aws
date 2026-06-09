@@ -26,8 +26,9 @@ public class TypingSessionService {
     }
 
     public UserStatsDto getStats() {
-        List<TypingSession> sessions = repository.findAll();
-        double topSpeed = repository.findTopSpeed();
-        return new UserStatsDto(topSpeed, sessions);
+        double topSpeed = repository.getTopSpeed();
+        double lastFiveAvgWpm = repository.getLastFiveAvgWpm();
+        List<TypingSession> allStats = repository.findAll();
+        return new UserStatsDto(topSpeed,  lastFiveAvgWpm, allStats);
     }
 }

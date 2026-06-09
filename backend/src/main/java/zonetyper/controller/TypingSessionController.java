@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
+import zonetyper.dto.UserStatsDto;
 import zonetyper.service.TypingSessionService;
 import org.springframework.web.bind.annotation.PostMapping;
 import zonetyper.model.TypingSession;
@@ -25,8 +26,8 @@ public class TypingSessionController {
     }
 
     @GetMapping("/stats")
-    public ResponseEntity<List<TypingSession>> getStats() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<UserStatsDto> getStats() {
+        return ResponseEntity.ok(service.getStats());
     }
 
     @GetMapping("/leaderboard")
