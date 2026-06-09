@@ -3,3 +3,6 @@ target/
 *.md
 .env
 .git
+.ebextensions
+server.crt
+server.key

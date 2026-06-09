@@ -6,3 +6,6 @@ frontend/.env
 backend/target/
 aws
 .elasticbeanstalk/
+.ebextensions
+server.crt
+server.key
