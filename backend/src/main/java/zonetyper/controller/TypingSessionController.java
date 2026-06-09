@@ -22,15 +22,15 @@ public class TypingSessionController {
     @PostMapping
     public ResponseEntity<TypingSession> create(@RequestBody TypingSession session) {
         return ResponseEntity.ok(service.save(session));
-}
+    }
 
-@GetMapping("/stats")
-public ResponseEntity<List<TypingSession>> getStats() {
-    return ResponseEntity.ok(service.getAll());
-}
+    @GetMapping("/stats")
+    public ResponseEntity<List<TypingSession>> getStats() {
+        return ResponseEntity.ok(service.getAll());
+    }
 
-@GetMapping("/leaderboard")
-public ResponseEntity<List<TypingSession>> getLeaderboard() {
+    @GetMapping("/leaderboard")
+    public ResponseEntity<List<TypingSession>> getLeaderboard() {
         return ResponseEntity.ok(service.getLeaderboard());
     }
 }
