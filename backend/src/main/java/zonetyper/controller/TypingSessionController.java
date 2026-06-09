@@ -33,5 +33,6 @@ public ResponseEntity<List<TypingSession>> getStats() {
 public ResponseEntity<List<TypingSession>> getLeaderboard() {
         return ResponseEntity.ok(service.getLeaderboard());
     }
-    
 }
+
+
