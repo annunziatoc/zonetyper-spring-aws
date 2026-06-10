@@ -42,18 +42,19 @@
     scale: 165%;
     right: 1rem;
     top: 1rem;
-    padding-block: 0.025rem;
+    line-height: 1;
+    padding-block-start: 0.3rem;
+    padding-block-end: 0.2rem;
     padding-inline: 0.3rem;
     cursor: pointer;
     width: fit-content;
-    border-radius: 10;
     background-color: var(--leaderboard-exit-bg);
     border-radius: 2px;
     color: var(--leaderboard-exit-button);
 }
 
 .exitButton:hover {
- color: var(--leaderboard-exit-button-hover);
+    color: var(--leaderboard-exit-button-hover);
 }
 
 .loadingWrapper {
