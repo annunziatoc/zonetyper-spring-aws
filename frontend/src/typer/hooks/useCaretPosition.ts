@@ -4,7 +4,7 @@ export const useCaretPosition = (
 
     /* 
    computes caret position by taking the difference of the top and left 
-   of the viewport to the container div relatative to the caret div,
+   of the viewport to the container div relative to the caret div,
     handling resize and changing of text events
    */
 
