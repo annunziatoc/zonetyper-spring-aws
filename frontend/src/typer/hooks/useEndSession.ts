@@ -1,16 +1,18 @@
-import { useEffect } from "react"
+import {useEffect} from "react"
 import useTypingStore from "./useTypingStore"
-import { submitSession } from "../services/typingSessionService"
+import {submitSession} from "../services/typingSessionService"
 
 const useEndCompletion = () => {
 
-    /* 
+    /*
    concludes a session after last correct char is typed, sets endTime
    and computes wpm and other stats follow by session submission to backend
    */
 
-    const { charsArr, startTime, sourceText, sourceTextId, errorCount,
-        setEndTime, setFinalWpm, setFinalAcc, setFinalDur, finalWpm } = useTypingStore()
+    const {
+        charsArr, startTime, sourceTextId, errorCount,
+        setEndTime, setFinalWpm, setFinalAcc, setFinalDur, finalWpm
+    } = useTypingStore()
 
     useEffect(() => {
         if (finalWpm > 0) return;
@@ -22,7 +24,7 @@ const useEndCompletion = () => {
             //join into a string like so ['chars ']
             //split to get word chunks ['chars', '']
             const nOfWords = charsArr.map(cs => cs.char).join('').split(' ').filter(Boolean).length
-            //ms to s to min 
+            //ms to s to min
             const elapsedMin = (now - startTime) / 60000
             const wpm = startTime === 0 ? 0 : Math.floor(nOfWords / elapsedMin)
             const acc = Math.round(((charsArr.length - errorCount) / charsArr.length) * 100)
@@ -40,7 +42,7 @@ const useEndCompletion = () => {
                 accuracy: acc,
                 duration: dur,
                 errorCount: errorCount,
-                sourceText: sourceText,
+                // sourceText: sourceText,
             }).catch(err => console.error(" submitSession failed", err));
         }
     }, [charsArr, startTime])
@@ -48,3 +50,12 @@ const useEndCompletion = () => {
 
 
 export default useEndCompletion;
+
+
+
+
+
+
+
+
+

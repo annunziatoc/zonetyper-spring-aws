@@ -14,7 +14,7 @@ const useTabReset = () => {
 
     useEffect(() => {
         const handler = (ev: KeyboardEvent) => {
-         
+
             if (ev.key !== 'Tab') return
             ev.preventDefault();
             resetSession();
@@ -30,5 +30,11 @@ const useTabReset = () => {
 
 }
 
-
 export default useTabReset;
+
+
+
+
+
+
+

@@ -28,3 +28,5 @@ const WpmChart = () => {
 }
 
 export default WpmChart;
+
+

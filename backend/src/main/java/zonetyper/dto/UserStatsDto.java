@@ -8,3 +8,8 @@ public record UserStatsDto(
     double lastFiveAvgWpm,
     List<TypingSession> allStats
 ) {}
+
+
+
+
+
